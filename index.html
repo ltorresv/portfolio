@@ -530,6 +530,70 @@
     .workflow-panel { padding: 24px 16px; }
     .workflow-tabs { flex-wrap: wrap; }
   }
+
+  /* ---- Writing ---- */
+  .writing-list { display: flex; flex-direction: column; gap: 16px; }
+
+  .writing-entry {
+    display: block;
+    background: var(--card);
+    border: 1px solid var(--border);
+    padding: 28px 32px;
+    text-decoration: none;
+    color: inherit;
+    transition: border-color .2s, background .2s;
+    border-left: 3px solid var(--accent);
+  }
+
+  .writing-entry:hover {
+    background: #f0f9ff;
+    border-color: var(--accent);
+  }
+
+  .writing-meta {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin-bottom: 10px;
+  }
+
+  .writing-tag {
+    background: var(--accent-light);
+    color: var(--accent-dark);
+    font-size: 11px;
+    font-weight: 600;
+    padding: 2px 9px;
+    border-radius: 20px;
+  }
+
+  .writing-date {
+    font-size: 11px;
+    color: var(--muted);
+    margin-left: auto;
+  }
+
+  .writing-title {
+    font-family: 'Inter', sans-serif;
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--bright);
+    margin-bottom: 8px;
+  }
+
+  .writing-desc {
+    font-size: 14px;
+    color: var(--text);
+    line-height: 1.7;
+    margin-bottom: 14px;
+  }
+
+  .writing-link {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--accent);
+  }
+
 </style>
 </head>
 <body>
@@ -540,6 +604,7 @@
     <li><a href="#programs">Programs</a></li>
     <li><a href="#compliance">Compliance</a></li>
     <li><a href="#ai-ops">AI SecOps</a></li>
+    <li><a href="#writing">Writing</a></li>
     <li><a href="#contact">Contact</a></li>
   </ul>
 </nav>
@@ -1152,6 +1217,29 @@
 
   <!-- ── CTA ── -->
   <section id="contact">
+    <!-- Writing -->
+    <section class="section" id="writing">
+      <div class="section-header">
+        <span class="section-num">06 /</span>
+        <h2>Writing</h2>
+        <p class="section-desc">Technical posts on security methodology, tooling, and program design.</p>
+      </div>
+      <div class="writing-list">
+        <a class="writing-entry" href="https://543hq.com/blog/vulnrichment-ssvc/" target="_blank">
+          <div class="writing-meta">
+            <span class="writing-tag">Vulnerability Management</span>
+            <span class="writing-tag">SSVC</span>
+            <span class="writing-tag">CVSS</span>
+            <span class="writing-tag">Risk-Based Patching</span>
+            <span class="writing-date">Oct 5, 2026</span>
+          </div>
+          <div class="writing-title">Not all critical CVEs have the same urgency</div>
+          <div class="writing-desc">Using CISA's SSVC and KEV to build a defensible patch priority that separates patch-now from patch-whenever regardless of CVSS score.</div>
+          <span class="writing-link">Read on 543hq.com &#8599;</span>
+        </a>
+      </div>
+    </section>
+
     <div class="cta-bar">
       <div>
         <div class="cta-text">Available for senior security roles.</div>
