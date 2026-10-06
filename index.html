@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Luis Torres-Villarreal — Security Portfolio</title>
+<title>Luis Torres-Villarreal - Security Portfolio</title>
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
 <style>
@@ -452,7 +452,7 @@
   }
 
   .skill-list li::before {
-    content: '—';
+    content: '-';
     color: var(--muted);
     font-size: 10px;
   }
@@ -669,7 +669,7 @@
       <div class="compliance-item">
         <div class="compliance-logo">SOC 2</div>
         <div class="compliance-sub">TYPE II · NO EXCEPTIONS</div>
-        <div class="compliance-result">Certified — Zero Exceptions</div>
+        <div class="compliance-result">Certified - Zero Exceptions</div>
         <div class="compliance-detail">
           Led end-to-end SOC 2 Type II certification covering CC Trust Service Criteria. Oversaw control design, evidence collection, gap remediation, and audit coordination across Engineering, IT, and Compliance.
         </div>
@@ -683,7 +683,7 @@
       <div class="compliance-item">
         <div class="compliance-logo">PCI DSS</div>
         <div class="compliance-sub">SAQ / ROC · PAYMENT INFRA</div>
-        <div class="compliance-result">Certified — Clean Assessment</div>
+        <div class="compliance-result">Certified - Clean Assessment</div>
         <div class="compliance-detail">
           Led PCI DSS certification for payment infrastructure spanning multiple brands. Scoped CDE environments, implemented compensating controls, and coordinated QSA fieldwork across engineering and cloud teams.
         </div>
@@ -727,7 +727,7 @@
 
     <!-- GuardDuty Triage -->
     <div id="tab-gd" class="workflow-panel active">
-      <div class="workflow-title">GuardDuty Alert Triage — Agentic DAG</div>
+      <div class="workflow-title">GuardDuty Alert Triage - Agentic DAG</div>
       <div class="workflow-subtitle">Multi-source correlation across CloudTrail, Okta, CrowdStrike EDR, and GitHub Enterprise. Mean time to triage reduced from 30 min manual to &lt;3 min agent-assisted.</div>
 
       <div class="dag">
@@ -840,7 +840,7 @@
 
           <!-- Phase 11+12 -->
           <rect x="320" y="404" width="260" height="44" rx="2" fill="#0c4a6e" stroke="#0284c7" stroke-width="1.5"/>
-          <text x="450" y="422" text-anchor="middle" fill="#0f172a" font-weight="600">PHASES 11–12</text>
+          <text x="450" y="422" text-anchor="middle" fill="#0f172a" font-weight="600">PHASES 11-12</text>
           <text x="450" y="438" text-anchor="middle" fill="#0284c7">Writeup → Jira → Slack</text>
 
           <!-- Legend -->
@@ -851,49 +851,11 @@
           <text x="58" y="470" fill="#64748b" font-size="10">Branch path</text>
         </svg>
       </div>
-
-      <div class="pseudo">
-<span class="cm"># GuardDuty Triage — Agentic Workflow (pseudocode)</span>
-
-<span class="kw">async def</span> <span class="fn">triage_guardduty_alert</span>(finding_id: <span class="var">str</span>) -> <span class="var">TriageResult</span>:
-
-    <span class="cm"># Phase 0-1: Intake + NGSIEM lookup</span>
-    finding = <span class="kw">await</span> <span class="fn">ngsiem_lookup</span>(finding_id)
-    principal, alert_ip, timestamp = <span class="fn">extract_identity</span>(finding)
-
-    <span class="cm"># Branch: Kubernetes vs Identity Center vs Standard</span>
-    <span class="kw">if</span> <span class="str">"Kubernetes"</span> <span class="kw">in</span> finding.type:
-        <span class="kw">return await</span> <span class="fn">kubernetes_triage_path</span>(finding)
-    <span class="kw">elif</span> principal == <span class="str">"HIDDEN_DUE_TO_SECURITY_REASONS"</span>:
-        <span class="kw">return await</span> <span class="fn">identity_center_path</span>(finding)
-
-    <span class="cm"># Phases 2-8: Parallel fan-out across all data sources</span>
-    cloudtrail, okta, crowdstrike, baseline, github, ssm = <span class="kw">await</span> asyncio.gather(
-        <span class="fn">cloudtrail_timeline</span>(principal, timestamp),
-        <span class="fn">okta_sso_timeline</span>(principal, timestamp),
-        <span class="fn">crowdstrike_device_history</span>(principal, alert_ip),
-        <span class="fn">consolein_baseline</span>(principal, exclude_day=timestamp),
-        <span class="fn">github_activity</span>(principal, timestamp),
-        <span class="fn">ssm_session_activity</span>(principal, timestamp),
-    )
-
-    <span class="cm"># Phase 10: Score and verdict</span>
-    score = <span class="fn">risk_score</span>(cloudtrail, okta, crowdstrike, baseline, github, ssm)
-    verdict = <span class="str">"HIGH"</span> <span class="kw">if</span> score >= <span class="num">5</span> <span class="kw">else</span> <span class="str">"MEDIUM"</span> <span class="kw">if</span> score >= <span class="num">2</span> <span class="kw">else</span> <span class="str">"LOW"</span>
-
-    <span class="cm"># Phases 11-12: Writeup + Jira + Slack</span>
-    report = <span class="fn">write_investigation_file</span>(finding, verdict, evidence)
-    <span class="kw">await</span> asyncio.gather(
-        <span class="fn">jira_create_ticket</span>(verdict, report),
-        <span class="fn">slack_post</span>(<span class="str">"#lt-brainstorm"</span>, verdict, report),
-    )
-    <span class="kw">return</span> TriageResult(verdict=verdict, score=score, report=report)
-      </div>
     </div>
 
     <!-- Supply Chain Monitor -->
     <div id="tab-sc" class="workflow-panel">
-      <div class="workflow-title">Supply Chain Triage — Automated Package Monitoring</div>
+      <div class="workflow-title">Supply Chain Triage - Automated Package Monitoring</div>
       <div class="workflow-subtitle">Continuous monitoring of npm and PyPI for malicious package updates. Agent-driven investigation with YARA, Semgrep, Gitleaks, and OSV scanning.</div>
 
       <div class="dag">
@@ -967,40 +929,11 @@
           <text x="404" y="322" text-anchor="middle" fill="#0284c7" font-size="11">Verdict → #lt-brainstorm · bot-team-kb</text>
         </svg>
       </div>
-
-      <div class="pseudo">
-<span class="cm"># Supply Chain Triage — Agentic Workflow (pseudocode)</span>
-
-<span class="kw">async def</span> <span class="fn">triage_package_alert</span>(alert: <span class="var">PackageAlert</span>) -> <span class="var">Verdict</span>:
-
-    <span class="cm"># Skip if already investigated</span>
-    <span class="kw">if</span> <span class="fn">has_existing_verdict</span>(alert.package, alert.version):
-        <span class="kw">return</span> <span class="fn">get_cached_verdict</span>(alert)
-
-    <span class="cm"># Clone and scan in parallel across all engines</span>
-    osv, semgrep, yara, gitleaks, nova = <span class="kw">await</span> asyncio.gather(
-        <span class="fn">osv_scan</span>(alert.package),            <span class="cm"># known CVEs</span>
-        <span class="fn">semgrep_scan</span>(repo_path, rules=<span class="num">85</span>),  <span class="cm"># malicious patterns</span>
-        <span class="fn">yara_scan</span>(repo_path, rules=<span class="num">27</span>),    <span class="cm"># supply chain signatures</span>
-        <span class="fn">gitleaks_scan</span>(repo_path),           <span class="cm"># hardcoded secrets</span>
-        <span class="fn">nova_scan</span>(repo_path),               <span class="cm"># AI/prompt injection</span>
-    )
-
-    verdict = <span class="fn">aggregate_verdict</span>(osv, semgrep, yara, gitleaks, nova)
-
-    <span class="cm"># Output: Slack + GitHub Discussion + bot-team-kb commit</span>
-    <span class="kw">await</span> asyncio.gather(
-        <span class="fn">post_slack</span>(<span class="str">"#lt-brainstorm"</span>, verdict),
-        <span class="fn">post_github_discussion</span>(verdict),
-        <span class="fn">commit_investigation_file</span>(<span class="str">"bot-team-kb/security-investigations/"</span>, verdict),
-    )
-    <span class="kw">return</span> verdict
-      </div>
     </div>
 
     <!-- Offboarding Verification -->
     <div id="tab-ob" class="workflow-panel">
-      <div class="workflow-title">Post-Termination Access Verification — Vanta Fan-Out</div>
+      <div class="workflow-title">Post-Termination Access Verification - Vanta Fan-Out</div>
       <div class="workflow-subtitle">Uses Vanta as the authoritative HR source. Fans out in parallel across 8+ platforms to detect residual access and post-termination activity within 60 seconds of an HR event.</div>
 
       <div class="dag">
@@ -1101,7 +1034,7 @@
 
     <!-- Extension Scanner -->
     <div id="tab-ex" class="workflow-panel">
-      <div class="workflow-title">Browser Extension Security Scanner — 5-Engine Pipeline</div>
+      <div class="workflow-title">Browser Extension Security Scanner - 5-Engine Pipeline</div>
       <div class="workflow-subtitle">Automated security assessment of Chrome/Edge/Firefox extensions combining static analysis, signature detection, store reputation, and CrowdStrike fleet correlation.</div>
 
       <div class="dag">
@@ -1169,7 +1102,7 @@
 
           <!-- Score -->
           <rect x="230" y="290" width="372" height="0" rx="2" fill="none"/>
-          <text x="416" y="302" text-anchor="middle" fill="#0284c7" font-size="11">Risk Score 0–100 → Verdict + Fleet Report</text>
+          <text x="416" y="302" text-anchor="middle" fill="#0284c7" font-size="11">Risk Score 0-100 → Verdict + Fleet Report</text>
         </svg>
       </div>
     </div>
