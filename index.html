@@ -788,6 +788,7 @@
       <button class="tab-btn" onclick="showTab('sc')">Supply Chain Monitor</button>
       <button class="tab-btn" onclick="showTab('ob')">Offboarding Verification</button>
       <button class="tab-btn" onclick="showTab('ex')">Extension Scanner</button>
+      <button class="tab-btn" onclick="showTab('va')">Vuln Exploitability</button>
     </div>
 
     <!-- GuardDuty Triage -->
@@ -1171,6 +1172,83 @@
         </svg>
       </div>
     </div>
+
+    <div id="tab-va" class="workflow-panel">
+      <div class="workflow-title">SAST Exploitability Assessment - Three-Pillar Scoring</div>
+      <div class="workflow-subtitle">Determines if a SAST finding is actually exploitable: code reachability, threat intelligence (EPSS + KEV), cloud posture, and PCI DSS / SOC 2 compliance mapping produce a scored, auditable verdict.</div>
+
+      <div class="dag">
+        <svg viewBox="0 0 860 500" width="100%" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <marker id="arr6" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto">
+              <path d="M0,0 L0,6 L6,3 Z" fill="#0284c7"/>
+            </marker>
+            <marker id="arr6o" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto">
+              <path d="M0,0 L0,6 L6,3 Z" fill="#f97316"/>
+            </marker>
+          </defs>
+
+          <!-- SAST Finding trigger -->
+          <rect x="280" y="10" width="300" height="44" rx="2" fill="#fff7ed" stroke="#f97316" stroke-width="1.5"/>
+          <text x="430" y="28" text-anchor="middle" fill="#0f172a" font-weight="600" font-size="11">TRIGGER</text>
+          <text x="430" y="44" text-anchor="middle" fill="#ea580c" font-size="10">SAST Finding (Snyk / CodeQL / Semgrep)</text>
+
+          <line x1="430" y1="54" x2="430" y2="80" stroke="#0284c7" stroke-width="1" marker-end="url(#arr6)"/>
+
+          <!-- Phase 0: Context Discovery -->
+          <rect x="260" y="80" width="340" height="50" rx="2" fill="#bae6fd" stroke="#0284c7" stroke-width="1.5"/>
+          <text x="430" y="100" text-anchor="middle" fill="#0f172a" font-size="11" font-weight="700">PHASE 0 - Context Discovery</text>
+          <text x="430" y="116" text-anchor="middle" fill="#0369a1" font-size="10">PCI scope? SOC 2 scope? Crypto finding? Data tier?</text>
+
+          <line x1="430" y1="130" x2="430" y2="155" stroke="#0284c7" stroke-width="1" marker-end="url(#arr6)"/>
+
+          <!-- Code Analysis box -->
+          <rect x="260" y="155" width="340" height="50" rx="2" fill="#f1f5f9" stroke="#cbd5e1"/>
+          <text x="430" y="175" text-anchor="middle" fill="#1e293b" font-size="11" font-weight="600">Code Analysis</text>
+          <text x="430" y="191" text-anchor="middle" fill="#64748b" font-size="10">Pull file - enumerate instances - trace callers - auth boundary</text>
+
+          <!-- Fan-out lines to two parallel columns -->
+          <line x1="430" y1="205" x2="430" y2="225" stroke="#0284c7" stroke-width="1"/>
+          <line x1="215" y1="225" x2="645" y2="225" stroke="#0284c7" stroke-width="1"/>
+          <line x1="215" y1="225" x2="215" y2="245" stroke="#0284c7" stroke-width="1" marker-end="url(#arr6)"/>
+          <line x1="645" y1="225" x2="645" y2="245" stroke="#0284c7" stroke-width="1" marker-end="url(#arr6)"/>
+
+          <!-- Left branch: CSPM Posture -->
+          <rect x="90" y="245" width="250" height="70" rx="2" fill="#f1f5f9" stroke="#cbd5e1"/>
+          <text x="215" y="265" text-anchor="middle" fill="#1e293b" font-size="11" font-weight="600">CSPM Posture (CloudTrail)</text>
+          <text x="215" y="281" text-anchor="middle" fill="#64748b" font-size="10">WAF attached?</text>
+          <text x="215" y="295" text-anchor="middle" fill="#64748b" font-size="10">SG 0.0.0.0/0 rules?</text>
+          <text x="215" y="309" text-anchor="middle" fill="#64748b" font-size="10">IAM Access Analyzer flags?</text>
+
+          <!-- Right branch: EPSS + KEV -->
+          <rect x="520" y="245" width="250" height="70" rx="2" fill="#f1f5f9" stroke="#cbd5e1"/>
+          <text x="645" y="265" text-anchor="middle" fill="#1e293b" font-size="11" font-weight="600">Threat Intel (EPSS + KEV)</text>
+          <text x="645" y="281" text-anchor="middle" fill="#64748b" font-size="10">EPSS score + percentile</text>
+          <text x="645" y="295" text-anchor="middle" fill="#64748b" font-size="10">CISA KEV check</text>
+          <text x="645" y="309" text-anchor="middle" fill="#ea580c" font-size="10" font-weight="600">KEV = Immediate override</text>
+
+          <!-- Converge lines -->
+          <line x1="215" y1="315" x2="215" y2="345" stroke="#0284c7" stroke-width="1"/>
+          <line x1="645" y1="315" x2="645" y2="345" stroke="#0284c7" stroke-width="1"/>
+          <line x1="215" y1="345" x2="645" y2="345" stroke="#0284c7" stroke-width="1"/>
+          <line x1="430" y1="345" x2="430" y2="360" stroke="#0284c7" stroke-width="1" marker-end="url(#arr6)"/>
+
+          <!-- Scoring box -->
+          <rect x="200" y="360" width="460" height="56" rx="2" fill="#bae6fd" stroke="#0284c7" stroke-width="1.5"/>
+          <text x="430" y="380" text-anchor="middle" fill="#0f172a" font-size="11" font-weight="700">Three-Pillar Scoring</text>
+          <text x="430" y="396" text-anchor="middle" fill="#0369a1" font-size="10">Reachability (R x0.35) + Exploitability (E x0.40) + Impact (I x0.25)</text>
+          <text x="430" y="410" text-anchor="middle" fill="#0369a1" font-size="10">Defer / Scheduled / Out-of-Cycle / Immediate</text>
+
+          <line x1="430" y1="416" x2="430" y2="436" stroke="#0284c7" stroke-width="1" marker-end="url(#arr6)"/>
+
+          <!-- Compliance + Output -->
+          <rect x="200" y="436" width="460" height="44" rx="2" fill="#bae6fd" stroke="#0284c7" stroke-width="1.5"/>
+          <text x="430" y="456" text-anchor="middle" fill="#0f172a" font-size="11" font-weight="700">Compliance Mapping + Output</text>
+          <text x="430" y="472" text-anchor="middle" fill="#0369a1" font-size="10">PCI DSS 4.0.1 / SOC 2 TSC - Assessment doc - Jira ticket</text>
+        </svg>
+      </div>
+    </div>
+
 
   </section>
 
