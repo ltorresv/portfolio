@@ -789,6 +789,7 @@
       <button class="tab-btn" onclick="showTab('ob')">Offboarding Verification</button>
       <button class="tab-btn" onclick="showTab('ex')">Extension Scanner</button>
       <button class="tab-btn" onclick="showTab('va')">Vuln Exploitability</button>
+      <button class="tab-btn" onclick="showTab('mc')">MCP Certification</button>
     </div>
 
     <!-- GuardDuty Triage -->
@@ -1245,6 +1246,203 @@
           <rect x="200" y="436" width="460" height="44" rx="2" fill="#bae6fd" stroke="#0284c7" stroke-width="1.5"/>
           <text x="430" y="456" text-anchor="middle" fill="#0f172a" font-size="11" font-weight="700">Compliance Mapping + Output</text>
           <text x="430" y="472" text-anchor="middle" fill="#0369a1" font-size="10">PCI DSS 4.0.1 / SOC 2 TSC - Assessment doc - Jira ticket</text>
+        </svg>
+      </div>
+    </div>
+
+    <div id="tab-mc" class="workflow-panel">
+      <div class="workflow-title">MCP Server Security Certification - Tiered Testing Framework</div>
+      <div class="workflow-subtitle">Programmatic security certification for Model Context Protocol servers before approval for use in production environments. Three tiers scaled to privilege level. Eight automated test suites covering the full OWASP MCP Top 10.</div>
+
+      <div class="dag">
+        <svg viewBox="0 0 900 580" width="100%" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <marker id="arr7" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto">
+              <path d="M0,0 L0,6 L6,3 Z" fill="#0284c7"/>
+            </marker>
+            <marker id="arr7r" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto">
+              <path d="M0,0 L0,6 L6,3 Z" fill="#dc2626"/>
+            </marker>
+            <marker id="arr7g" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto">
+              <path d="M0,0 L0,6 L6,3 Z" fill="#16a34a"/>
+            </marker>
+          </defs>
+
+          <!-- SUBMISSION -->
+          <rect x="290" y="10" width="320" height="44" rx="2" fill="#fff7ed" stroke="#f97316" stroke-width="1.5"/>
+          <text x="450" y="28" text-anchor="middle" fill="#0f172a" font-weight="700" font-size="11">SUBMISSION</text>
+          <text x="450" y="44" text-anchor="middle" fill="#ea580c" font-size="10">Engineering team - Jira ticket + package source</text>
+
+          <line x1="450" y1="54" x2="450" y2="78" stroke="#0284c7" stroke-width="1" marker-end="url(#arr7)"/>
+
+          <!-- TIER ASSIGNMENT -->
+          <rect x="290" y="78" width="320" height="44" rx="2" fill="#bae6fd" stroke="#0284c7" stroke-width="1.5"/>
+          <text x="450" y="97" text-anchor="middle" fill="#0f172a" font-weight="700" font-size="11">TIER ASSIGNMENT</text>
+          <text x="450" y="113" text-anchor="middle" fill="#0369a1" font-size="10">L1 Sandbox - L2 Connected - L3 Privileged</text>
+
+          <!-- Tier labels -->
+          <rect x="50" y="78" width="110" height="44" rx="2" fill="#e0f2fe" stroke="#0284c7"/>
+          <text x="105" y="97" text-anchor="middle" fill="#0f172a" font-size="10" font-weight="600">L1 - Sandbox</text>
+          <text x="105" y="111" text-anchor="middle" fill="#0369a1" font-size="9">stdio, read-only</text>
+          <text x="105" y="122" text-anchor="middle" fill="#64748b" font-size="9">6 mo cert</text>
+
+          <rect x="170" y="78" width="110" height="44" rx="2" fill="#ede9fe" stroke="#7c3aed"/>
+          <text x="225" y="97" text-anchor="middle" fill="#0f172a" font-size="10" font-weight="600">L2 - Connected</text>
+          <text x="225" y="111" text-anchor="middle" fill="#7c3aed" font-size="9">HTTP/SSE, APIs</text>
+          <text x="225" y="122" text-anchor="middle" fill="#64748b" font-size="9">3 mo cert</text>
+
+          <rect x="620" y="78" width="110" height="44" rx="2" fill="#fff7ed" stroke="#f97316"/>
+          <text x="675" y="97" text-anchor="middle" fill="#0f172a" font-size="10" font-weight="600">L3 - Privileged</text>
+          <text x="675" y="111" text-anchor="middle" fill="#ea580c" font-size="9">Write / PII / finance</text>
+          <text x="675" y="122" text-anchor="middle" fill="#64748b" font-size="9">3 mo or on change</text>
+
+          <line x1="450" y1="122" x2="450" y2="146" stroke="#0284c7" stroke-width="1" marker-end="url(#arr7)"/>
+
+          <!-- PRE-SCAN fan-out -->
+          <text x="450" y="160" text-anchor="middle" fill="#64748b" font-size="9" font-style="italic">Automated pre-scan - parallel</text>
+          <line x1="450" y1="163" x2="450" y2="172" stroke="#0284c7" stroke-width="1"/>
+          <line x1="120" y1="172" x2="780" y2="172" stroke="#0284c7" stroke-width="1"/>
+          <line x1="120" y1="172" x2="120" y2="186" stroke="#0284c7" stroke-width="1" marker-end="url(#arr7)"/>
+          <line x1="300" y1="172" x2="300" y2="186" stroke="#0284c7" stroke-width="1" marker-end="url(#arr7)"/>
+          <line x1="480" y1="172" x2="480" y2="186" stroke="#0284c7" stroke-width="1" marker-end="url(#arr7)"/>
+          <line x1="660" y1="172" x2="660" y2="186" stroke="#0284c7" stroke-width="1" marker-end="url(#arr7)"/>
+
+          <rect x="45" y="186" width="150" height="48" rx="2" fill="#f1f5f9" stroke="#cbd5e1"/>
+          <text x="120" y="205" text-anchor="middle" fill="#1e293b" font-size="10" font-weight="600">mcp-scan</text>
+          <text x="120" y="219" text-anchor="middle" fill="#64748b" font-size="9">Tool poisoning</text>
+          <text x="120" y="231" text-anchor="middle" fill="#64748b" font-size="9">Shadowing</text>
+
+          <rect x="225" y="186" width="150" height="48" rx="2" fill="#f1f5f9" stroke="#cbd5e1"/>
+          <text x="300" y="205" text-anchor="middle" fill="#1e293b" font-size="10" font-weight="600">Snyk Agent Scan</text>
+          <text x="300" y="219" text-anchor="middle" fill="#64748b" font-size="9">Manifest analysis</text>
+          <text x="300" y="231" text-anchor="middle" fill="#64748b" font-size="9">Prompt injection</text>
+
+          <rect x="405" y="186" width="150" height="48" rx="2" fill="#f1f5f9" stroke="#cbd5e1"/>
+          <text x="480" y="205" text-anchor="middle" fill="#1e293b" font-size="10" font-weight="600">Dep Audit</text>
+          <text x="480" y="219" text-anchor="middle" fill="#64748b" font-size="9">npm / pip audit</text>
+          <text x="480" y="231" text-anchor="middle" fill="#64748b" font-size="9">Critical CVEs</text>
+
+          <rect x="585" y="186" width="150" height="48" rx="2" fill="#f1f5f9" stroke="#cbd5e1"/>
+          <text x="660" y="205" text-anchor="middle" fill="#1e293b" font-size="10" font-weight="600">Heuristic Scanner</text>
+          <text x="660" y="219" text-anchor="middle" fill="#64748b" font-size="9">Secrets, eval/exec</text>
+          <text x="660" y="231" text-anchor="middle" fill="#64748b" font-size="9">Undeclared network</text>
+
+          <!-- converge to critical gate -->
+          <line x1="120" y1="234" x2="120" y2="254" stroke="#0284c7" stroke-width="1"/>
+          <line x1="300" y1="234" x2="300" y2="254" stroke="#0284c7" stroke-width="1"/>
+          <line x1="480" y1="234" x2="480" y2="254" stroke="#0284c7" stroke-width="1"/>
+          <line x1="660" y1="234" x2="660" y2="254" stroke="#0284c7" stroke-width="1"/>
+          <line x1="120" y1="254" x2="660" y2="254" stroke="#0284c7" stroke-width="1"/>
+          <line x1="390" y1="254" x2="390" y2="268" stroke="#0284c7" stroke-width="1" marker-end="url(#arr7)"/>
+
+          <!-- Critical gate -->
+          <rect x="260" y="268" width="260" height="38" rx="2" fill="#fee2e2" stroke="#dc2626" stroke-width="1.5"/>
+          <text x="390" y="284" text-anchor="middle" fill="#dc2626" font-size="10" font-weight="700">Critical finding?</text>
+          <text x="390" y="299" text-anchor="middle" fill="#dc2626" font-size="9">YES - process stops - remediate and resubmit</text>
+
+          <!-- FAILED branch right -->
+          <line x1="520" y1="287" x2="620" y2="287" stroke="#dc2626" stroke-width="1" marker-end="url(#arr7r)"/>
+          <rect x="620" y="268" width="120" height="38" rx="2" fill="#fee2e2" stroke="#dc2626" stroke-width="1.5"/>
+          <text x="680" y="285" text-anchor="middle" fill="#dc2626" font-size="10" font-weight="700">FAILED</text>
+          <text x="680" y="299" text-anchor="middle" fill="#dc2626" font-size="9">Remediate + resubmit</text>
+
+          <!-- NO continue -->
+          <line x1="390" y1="306" x2="390" y2="326" stroke="#16a34a" stroke-width="1" marker-end="url(#arr7g)"/>
+          <text x="370" y="320" fill="#16a34a" font-size="9" font-weight="600">NO</text>
+
+          <!-- TEST SUITES fan-out -->
+          <text x="450" y="342" text-anchor="middle" fill="#64748b" font-size="9" font-style="italic">Sandboxed Docker - test suites by tier</text>
+          <line x1="390" y1="326" x2="790" y2="326" stroke="#0284c7" stroke-width="1"/>
+          <line x1="100" y1="326" x2="390" y2="326" stroke="#0284c7" stroke-width="1"/>
+
+          <!-- Suite row 1: A B C D (all tiers) -->
+          <line x1="140" y1="326" x2="140" y2="346" stroke="#0284c7" stroke-width="1" marker-end="url(#arr7)"/>
+          <line x1="300" y1="326" x2="300" y2="346" stroke="#0284c7" stroke-width="1" marker-end="url(#arr7)"/>
+          <line x1="460" y1="326" x2="460" y2="346" stroke="#0284c7" stroke-width="1" marker-end="url(#arr7)"/>
+          <line x1="620" y1="326" x2="620" y2="346" stroke="#0284c7" stroke-width="1" marker-end="url(#arr7)"/>
+
+          <rect x="65" y="346" width="150" height="48" rx="2" fill="#e0f2fe" stroke="#0284c7"/>
+          <text x="140" y="365" text-anchor="middle" fill="#0f172a" font-size="10" font-weight="600">Suite A</text>
+          <text x="140" y="379" text-anchor="middle" fill="#0369a1" font-size="9">Auth + Credentials</text>
+          <text x="140" y="391" text-anchor="middle" fill="#64748b" font-size="8">8 tests - All tiers</text>
+
+          <rect x="225" y="346" width="150" height="48" rx="2" fill="#e0f2fe" stroke="#0284c7"/>
+          <text x="300" y="365" text-anchor="middle" fill="#0f172a" font-size="10" font-weight="600">Suite B</text>
+          <text x="300" y="379" text-anchor="middle" fill="#0369a1" font-size="9">Schema + Supply Chain</text>
+          <text x="300" y="391" text-anchor="middle" fill="#64748b" font-size="8">9 tests - All tiers</text>
+
+          <rect x="385" y="346" width="150" height="48" rx="2" fill="#e0f2fe" stroke="#0284c7"/>
+          <text x="460" y="365" text-anchor="middle" fill="#0f172a" font-size="10" font-weight="600">Suite C</text>
+          <text x="460" y="379" text-anchor="middle" fill="#0369a1" font-size="9">Injection + Execution</text>
+          <text x="460" y="391" text-anchor="middle" fill="#64748b" font-size="8">6 tests - All tiers</text>
+
+          <rect x="545" y="346" width="150" height="48" rx="2" fill="#e0f2fe" stroke="#0284c7"/>
+          <text x="620" y="365" text-anchor="middle" fill="#0f172a" font-size="10" font-weight="600">Suite D</text>
+          <text x="620" y="379" text-anchor="middle" fill="#0369a1" font-size="9">Context Poisoning</text>
+          <text x="620" y="391" text-anchor="middle" fill="#64748b" font-size="8">5 tests - All tiers</text>
+
+          <!-- Suite row 2: E F G H (L2/L3) -->
+          <text x="450" y="412" text-anchor="middle" fill="#f97316" font-size="8" font-style="italic">L2 / L3 only</text>
+          <line x1="65" y1="415" x2="695" y2="415" stroke="#94a3b8" stroke-width="1" stroke-dasharray="3,3"/>
+
+          <line x1="140" y1="415" x2="140" y2="428" stroke="#94a3b8" stroke-width="1" marker-end="url(#arr7)"/>
+          <line x1="300" y1="415" x2="300" y2="428" stroke="#94a3b8" stroke-width="1" marker-end="url(#arr7)"/>
+          <line x1="460" y1="415" x2="460" y2="428" stroke="#94a3b8" stroke-width="1" marker-end="url(#arr7)"/>
+          <line x1="620" y1="415" x2="620" y2="428" stroke="#94a3b8" stroke-width="1" marker-end="url(#arr7)"/>
+
+          <rect x="65" y="428" width="150" height="48" rx="2" fill="#fff7ed" stroke="#f97316"/>
+          <text x="140" y="447" text-anchor="middle" fill="#0f172a" font-size="10" font-weight="600">Suite E</text>
+          <text x="140" y="461" text-anchor="middle" fill="#ea580c" font-size="9">Privilege + Scope</text>
+          <text x="140" y="473" text-anchor="middle" fill="#64748b" font-size="8">5 tests - L3 only</text>
+
+          <rect x="225" y="428" width="150" height="48" rx="2" fill="#fff7ed" stroke="#f97316"/>
+          <text x="300" y="447" text-anchor="middle" fill="#0f172a" font-size="10" font-weight="600">Suite F</text>
+          <text x="300" y="461" text-anchor="middle" fill="#ea580c" font-size="9">Multi-Server Isolation</text>
+          <text x="300" y="473" text-anchor="middle" fill="#64748b" font-size="8">4 tests - L3 only</text>
+
+          <rect x="385" y="428" width="150" height="48" rx="2" fill="#fff7ed" stroke="#f97316"/>
+          <text x="460" y="447" text-anchor="middle" fill="#0f172a" font-size="10" font-weight="600">Suite G</text>
+          <text x="460" y="461" text-anchor="middle" fill="#ea580c" font-size="9">Output Sanitization</text>
+          <text x="460" y="473" text-anchor="middle" fill="#64748b" font-size="8">4 tests - L3 only</text>
+
+          <rect x="545" y="428" width="150" height="48" rx="2" fill="#ede9fe" stroke="#7c3aed"/>
+          <text x="620" y="447" text-anchor="middle" fill="#0f172a" font-size="10" font-weight="600">Suite H</text>
+          <text x="620" y="461" text-anchor="middle" fill="#7c3aed" font-size="9">DoS + Network</text>
+          <text x="620" y="473" text-anchor="middle" fill="#64748b" font-size="8">8 tests - L2+</text>
+
+          <!-- converge to manual review -->
+          <line x1="140" y1="476" x2="140" y2="496" stroke="#0284c7" stroke-width="1"/>
+          <line x1="300" y1="476" x2="300" y2="496" stroke="#0284c7" stroke-width="1"/>
+          <line x1="460" y1="476" x2="460" y2="496" stroke="#0284c7" stroke-width="1"/>
+          <line x1="620" y1="476" x2="620" y2="496" stroke="#0284c7" stroke-width="1"/>
+          <line x1="140" y1="496" x2="620" y2="496" stroke="#0284c7" stroke-width="1"/>
+          <line x1="380" y1="496" x2="380" y2="510" stroke="#0284c7" stroke-width="1" marker-end="url(#arr7)"/>
+
+          <!-- Manual Review -->
+          <rect x="240" y="510" width="280" height="36" rx="2" fill="#f1f5f9" stroke="#94a3b8" stroke-width="1.5"/>
+          <text x="380" y="526" text-anchor="middle" fill="#1e293b" font-size="10" font-weight="600">Manual Review (L2 / L3)</text>
+          <text x="380" y="540" text-anchor="middle" fill="#64748b" font-size="9">Schema - Architecture - Permissions - Code</text>
+
+          <line x1="380" y1="546" x2="380" y2="560" stroke="#0284c7" stroke-width="1" marker-end="url(#arr7)"/>
+
+          <!-- Decision row -->
+          <rect x="70" y="560" width="120" height="14" rx="2" fill="#dcfce7" stroke="#16a34a" stroke-width="1"/>
+          <text x="130" y="571" text-anchor="middle" fill="#16a34a" font-size="9" font-weight="700">CERTIFIED</text>
+
+          <rect x="210" y="560" width="120" height="14" rx="2" fill="#fef3c7" stroke="#d97706" stroke-width="1"/>
+          <text x="270" y="571" text-anchor="middle" fill="#d97706" font-size="9" font-weight="700">CONDITIONAL</text>
+
+          <rect x="350" y="560" width="120" height="14" rx="2" fill="#fee2e2" stroke="#dc2626" stroke-width="1"/>
+          <text x="410" y="571" text-anchor="middle" fill="#dc2626" font-size="9" font-weight="700">FAILED</text>
+
+          <rect x="490" y="560" width="120" height="14" rx="2" fill="#f1f5f9" stroke="#94a3b8" stroke-width="1"/>
+          <text x="550" y="571" text-anchor="middle" fill="#64748b" font-size="9" font-weight="700">REVOKED</text>
+
+          <!-- lines from decision point to outcomes -->
+          <line x1="380" y1="560" x2="130" y2="560" stroke="#0284c7" stroke-width="1"/>
+          <line x1="380" y1="560" x2="270" y2="560" stroke="#0284c7" stroke-width="1"/>
+          <line x1="380" y1="560" x2="410" y2="560" stroke="#0284c7" stroke-width="1"/>
+          <line x1="380" y1="560" x2="550" y2="560" stroke="#0284c7" stroke-width="1"/>
         </svg>
       </div>
     </div>
